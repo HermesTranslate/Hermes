@@ -1,0 +1,23 @@
+{
+  "name": "hermes",
+  "version": "1.0.0",
+  "description": "Hermes Translate bot for Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HermesTranslate/Hermes.git"
+  },
+  "author": "-AT3M- Xion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HermesTranslate/Hermes/issues"
+  },
+  "homepage": "https://github.com/HermesTranslate/Hermes#readme",
+  "dependencies": {
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0"
+  }
+}

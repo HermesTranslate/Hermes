@@ -7,6 +7,12 @@ export default {
     testOnly: true,
 
     callback: ({ message, interaction }) => {
-        return 'Pong!'
+        //return 'Pong!'
+        if (interaction) {
+            return 'Pong! - For more information, please run !ping'
+        }else if (message) {
+            message.reply(`Latency is **${Date.now() - message.createdTimestamp}ms.**`);
+        }
     }
 } as ICommand
+

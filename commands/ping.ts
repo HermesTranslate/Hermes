@@ -1,3 +1,5 @@
+import { MessageEmbed } from "discord.js";
+import { moveSyntheticComments } from "typescript";
 import { ICommand } from "wokcommands";
 
 export default {
@@ -7,6 +9,10 @@ export default {
     testOnly: true,
 
     callback: ({ message, interaction }) => {
-        return 'Pong!'
+        const embed = new MessageEmbed()
+        .setTitle('HERMES - System Response')
+        .setColor('RED')
+        .setDescription(`Latency is **${interaction? Date.now() - interaction.createdTimestamp: Date.now() - message.createdTimestamp}ms.**`)
+        return embed
     }
 } as ICommand

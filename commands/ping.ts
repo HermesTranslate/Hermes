@@ -1,5 +1,4 @@
 import { MessageEmbed } from "discord.js";
-import { moveSyntheticComments } from "typescript";
 import { ICommand } from "wokcommands";
 
 export default {

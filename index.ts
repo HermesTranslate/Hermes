@@ -12,8 +12,6 @@ const client = new DiscordJS.Client({
   ],
 });
 
-//test UwU
-
 client.on("ready", () => {
   console.log("The bot is Ready!")
 

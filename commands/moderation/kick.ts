@@ -3,26 +3,28 @@ import { ICommand } from "wokcommands";
 export default {
     category: 'Moderation',
     description: 'Kick a member',
-    slash: false,
+    slash: "both",
     testOnly: false,
     permissions: ["KICK_MEMBERS"],
     expectedArgs: "<target> [reason]",
     minArgs: 1,
 
-    callback: ({ message, args }) => {
+    callback: ({ message, interaction, args }) => {
+        const msg = message? message: interaction
+        const username = message? message.author.username: interaction.member?.user.username
         const tag = args.shift();
         if (!tag) return "please provide a member to kick"
         const memberid = tag.includes("<@!") ? tag.replace("<@!", "").replace(">", "")
         : tag.replace("<@", "").replace(">", "");
         const reason = args.join(" ");
-        message.guild?.members.fetch(memberid).then(member=>{
-            member.kick(`Kicked by ${message.author.username} \nReason: ${reason}`).then(()=>{
-                message.reply(`Kicked <@${memberid}>`);
+        msg.guild?.members.fetch(memberid).then(member=>{
+            member.kick(`Kicked by ${username} \nReason: ${reason}`).then(()=>{
+                msg.reply(`Kicked <@${memberid}>`);
             }).catch(()=>{
-                message.reply(`Could not kick the specified member`);
+                msg.reply(`Could not kick the specified member`);
             })
         }).catch(()=>{
-            message.reply("Could not find specified member");
+            msg.reply("Could not find specified member");
         })
     }
 } as ICommand

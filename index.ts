@@ -18,7 +18,9 @@ client.on("ready", () => {
   const wok = new WOKCommands(client, {
     commandsDir: path.join(__dirname, 'commands'),
     typeScript: true,
+    mongoUri: 'mongodb://localhost:27017',
     testServers: ['897594588590645278', '873759652192600075'],
+    botOwners: ['277068610692972544'],
     ignoreBots: true
   })
     .setDefaultPrefix('?')

@@ -4,6 +4,7 @@ import { MessageEmbed } from "discord.js";
 
 export default{
     category: "General",
+    testOnly: true,
     slash: false,
     description: "cat.",
 

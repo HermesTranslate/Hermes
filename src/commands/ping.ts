@@ -1,7 +1,5 @@
 import { CommandInteraction } from "discord.js";
 import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
-import { LangChoices } from "../utils/langChoices.js"
-import { TranslateClient } from "../utils/translate.js"
 
 @Discord()
 class TranslateCommand {

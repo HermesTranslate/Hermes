@@ -1,13 +1,14 @@
-import { CommandInteraction } from "discord.js";
-import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
+import { CommandInteraction, MessageEmbed } from "discord.js";
+import { Discord, Slash} from "discordx";
 
 @Discord()
-class TranslateCommand {
-  @Slash("ping") {
-        const embed = new MessageEmbed()
-        .setTitle('HERMES - System Response')
-        .setColor('RED')
-        .setDescription(`Latency is **${Date.now() - interaction.createdTimestamp}ms.**`)
-        interaction.reply(embed: [ embed ]);
-    }
+class ping {
+  @Slash("ping") 
+  async ping(interaction: CommandInteraction) {
+    const embed = new MessageEmbed()
+    .setTitle('HERMES - System Response')
+    .setColor('RED')
+    .setDescription(`Latency is **${Date.now() - interaction.createdTimestamp}ms.**`)
+    interaction.reply({embeds: [embed]});
+  }
 }

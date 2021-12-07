@@ -1,17 +1,15 @@
-import { MessageEmbed } from "discord.js";
-import { ICommand } from "wokcommands";
+import { CommandInteraction } from "discord.js";
+import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
+import { LangChoices } from "../utils/langChoices.js"
+import { TranslateClient } from "../utils/translate.js"
 
-export default {
-    category: 'Testing',
-    description: 'Replies with Pong!',
-    slash: 'both',
-    testOnly: true,
-
-    callback: ({ message, interaction }) => {
+@Discord()
+class TranslateCommand {
+  @Slash("ping") {
         const embed = new MessageEmbed()
         .setTitle('HERMES - System Response')
         .setColor('RED')
-        .setDescription(`Latency is **${interaction? Date.now() - interaction.createdTimestamp: Date.now() - message.createdTimestamp}ms.**`)
-        return embed
+        .setDescription(`Latency is **${Date.now() - interaction.createdTimestamp}ms.**`)
+        interaction.reply(embed: [ embed ]);
     }
-} as ICommand
+}

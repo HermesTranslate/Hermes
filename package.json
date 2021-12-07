@@ -37,9 +37,7 @@
     "nodemon": "^2.0.15",
     "prettier": "^2.5.0",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.2",
-    "@discordjs/rest" : "latest",
-    "discord-api-types" : "latest"
+    "typescript": "^4.5.2"
   },
   "engines": {
     "node": ">=16.0.0",

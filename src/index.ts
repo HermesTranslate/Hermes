@@ -45,10 +45,7 @@ client.on("messageCreate", (message: Message) => {
 });
 
 async function run() {
-  // with cjs
-  // await importx(__dirname + "/{events,commands,utils}/**/*.{ts,js}");
-  // with ems
-  await importx(dirname(import.meta.url) + "/{events,commands,db}/**/*.{ts,js}");
+  await importx(dirname(import.meta.url) + "/{events,commands,db,utils}/**/*.{ts,js}");
   client.login(process.env.TOKEN!); // provide your bot token
 }
 

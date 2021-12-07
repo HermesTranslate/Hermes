@@ -1,7 +1,7 @@
 import { CommandInteraction } from "discord.js";
 import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
 import { LangChoices } from "../utils/langChoices.js"
-import axios from "axios";
+import { TranslateClient } from "../utils/translate.js"
 
 @Discord()
 class TranslateCommand {
@@ -22,12 +22,7 @@ class TranslateCommand {
     textToTranslate: string,
     interaction: CommandInteraction
   ) {
-        const json = JSON.stringify({"q": textToTranslate, "source": "en", "target": langCode});
-        const response = await axios.post(process.env.TRANSLATE_API_URI!, json, {
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(res => {
-            interaction.reply(res.data.translatedText);
-        })
+        let result = await TranslateClient.translate("en", langCode, textToTranslate);
+        interaction.reply(result);
     }
 }

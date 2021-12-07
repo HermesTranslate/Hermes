@@ -14,9 +14,7 @@ class CatCommand {
             const embed = new MessageEmbed()
             .setColor("#8dde0b")
             .setImage(data[0]["url"]);
-            //return embed
             interaction.reply({embeds: [embed]});
-            //return this.message.reply({ embeds: [embed] });
         })
         
     }

@@ -2,8 +2,6 @@ import { CommandInteraction } from "discord.js";
 import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
 import { Auto } from "../db/auto.schema.js"
 import { LangChoices } from "../utils/langChoices.js"
-import dotenv from "dotenv";
-dotenv.config();
 
 @Discord()
 class AutoCommand {

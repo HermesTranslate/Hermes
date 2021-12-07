@@ -2,8 +2,6 @@ import { CommandInteraction } from "discord.js";
 import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
 import { LangChoices } from "../utils/langChoices.js"
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
 
 @Discord()
 class TranslateCommand {

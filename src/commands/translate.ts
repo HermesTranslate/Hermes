@@ -1,4 +1,4 @@
-import { CommandInteraction } from "discord.js";
+import { CommandInteraction, MessageEmbed } from "discord.js";
 import { Discord, Slash, SlashOption, SlashChoice } from "discordx";
 import { LangChoices } from "../utils/langChoices.js"
 import { TranslateClient } from "../utils/translate.js"
@@ -23,6 +23,11 @@ class TranslateCommand {
     interaction: CommandInteraction
   ) {
         let result = await TranslateClient.translate("en", langCode, textToTranslate);
-        interaction.reply(result);
+        const user = interaction.member.user.id
+        const embed = new MessageEmbed()
+        .setColor('GREEN')
+        .setDescription(result)
+        .setFooter(`Translated by ${user}`)
+        interaction.reply({embeds: [embed], ephemeral: false});   
     }
 }

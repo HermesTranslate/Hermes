@@ -22,7 +22,12 @@ class TranslateCommand {
     textToTranslate: string,
     interaction: CommandInteraction
   ) {
-        let result = await TranslateClient.translate("en", langCode, textToTranslate);
+        let detectedLang = await TranslateClient.detect(textToTranslate);
+        if(detectedLang == langCode) {
+            interaction.reply(`Error: Source language is the same as target (${langCode} -> ${detectedLang})`);
+            return;
+        }
+        let result = await TranslateClient.translate(detectedLang, langCode, textToTranslate);
         interaction.reply(result);
     }
 }

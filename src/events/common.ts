@@ -14,7 +14,8 @@ export abstract class AppDiscord {
         guildId: message.guild.id
     })
     if (data) {
-        let result = await TranslateClient.translate("en", data.lang, message.content);
+        let detectedLang = await TranslateClient.detect(message.content);
+        let result = await TranslateClient.translate(detectedLang, data.lang, message.content);
         await message.channel.send(result)
     }
     

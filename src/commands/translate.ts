@@ -8,26 +8,37 @@ class TranslateCommand {
   @Slash("translate")
   async translate(
     @SlashChoice(LangChoices)
-    @SlashOption("lang", {
+    @SlashOption("target", {
         required: true,
-        description: "the language",
+        description: "the target language",
         type: "STRING"
     })
-    langCode: string,
+    targetLang: string,
     @SlashOption("text", {
         required: true,
         description: "the text to translate",
         type: "STRING"
     })
     textToTranslate: string,
+    @SlashChoice(LangChoices)
+    @SlashOption("source", {
+        required: false,
+        description: "the source language",
+        type: "STRING"
+    })
+    sourceLang: string,
     interaction: CommandInteraction
   ) {
-        let detectedLang = await TranslateClient.detect(textToTranslate);
-        if(detectedLang == langCode) {
-            interaction.reply(`Error: Source language is the same as target (${langCode} -> ${detectedLang})`);
-            return;
+       var detectedLang = sourceLang;
+       console.log(detectedLang);
+        if(!detectedLang){
+            detectedLang = await TranslateClient.detect(textToTranslate);
+            if(detectedLang == targetLang) {
+                interaction.reply(`Error: Source language is the same as target (${targetLang} -> ${detectedLang})`);
+                return;
+            }
         }
-        let result = await TranslateClient.translate(detectedLang, langCode, textToTranslate);
+        let result = await TranslateClient.translate(detectedLang, targetLang, textToTranslate);
         interaction.reply(result);
     }
 }

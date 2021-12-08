@@ -13,6 +13,7 @@ export class TranslateClient {
         })
     }
 
+    //TODO: See https://github.com/LibreTranslate/LibreTranslate/issues/148
     static async detect(text: string) : Promise<string> {
         const json = JSON.stringify({"q": text});
         return axios.post(`${process.env.TRANSLATE_API_URI!}/detect`, json, {

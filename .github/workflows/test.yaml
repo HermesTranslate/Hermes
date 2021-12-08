@@ -1,0 +1,32 @@
+name: test
+
+on:
+  push:
+    branches:
+      - 'dev2'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy via ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          rm -rf Hermes
+          git clone -b dev2 git@github.com:HermesTranslate/Hermes.git
+          cd Hermes
+          docker rm -f hermes-node 2> /dev/null
+          docker run -v $(pwd):/usr/local/app -w /usr/local/app node:17-slim npm install
+          docker run -v $(pwd):/usr/local/app -w /usr/local/app node:17-slim npm run build
+          docker run -d -v $(pwd):/usr/local/app -w /usr/local/app \
+            -e TOKEN="${{secrets.BOT_TOKEN_DEV }}" \
+            -e MONGO_URI="${{ secrets.MONGO_URI_DEV }}" \
+            -e TRANSLATE_API_URI="${{ secrets.TRANSLATE_API_URI_DEV }}" \
+            -e TEST_SERVERS="${{ secrets.TEST_SERVERS }}" \
+            -e ENVIRONMENT="development" \
+            --restart unless-stopped --network host --name hermes-node node:17-slim npm run serve

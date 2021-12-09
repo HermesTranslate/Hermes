@@ -10,14 +10,12 @@ export abstract class AppDiscord {
     if (message.author.bot) return;
     if (!message.guild) return;
     let data = await Auto.findOne({
-        userId: message.author.id,
-        guildId: message.guild.id
+      userId: message.author.id,
+      guildId: message.guild.id
     })
     if (data) {
-        //let detectedLang = await TranslateClient.detect(message.content);
-        let result = await TranslateClient.translate("en", data.lang, message.content);
-        await message.channel.send(result)
+      let result = await TranslateClient.translate("en", data.lang, message.content);
+      await message.channel.send(result)
     }
-    
   }
 }

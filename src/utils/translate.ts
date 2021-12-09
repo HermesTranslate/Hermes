@@ -32,5 +32,12 @@ export class TranslateClient {
             return highestLang
         })
     }
+
+    static async languages(text: string) : Promise<object> {
+        return axios.get(`${process.env.TRANSLATE_API_URI!}/languages`)
+        .then(res => {
+            return res.data
+        })
+    }
 }
 

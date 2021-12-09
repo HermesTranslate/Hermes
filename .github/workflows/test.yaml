@@ -3,7 +3,7 @@ name: test
 on:
   push:
     branches:
-      - 'dev2'
+      - 'test'
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           rm -rf Hermes
-          git clone -b dev2 git@github.com:HermesTranslate/Hermes.git
+          git clone -b test git@github.com:HermesTranslate/Hermes.git
           cd Hermes
           docker rm -f hermes-node 2> /dev/null
           docker run -v $(pwd):/usr/local/app -w /usr/local/app node:17-slim npm install

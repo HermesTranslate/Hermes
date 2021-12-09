@@ -1,9 +1,24 @@
 export enum LangChoices {
+  Arabic = "ar",
+  Chinese = "zh",
+  Dutch = "nl",
   English = "en",
+  Finnish = "fi",
+  French = "fr",
   German = "de",
+  Hindi = "hi",
+  Hungarian = "hu",
+  Indonesian = "id",
+  Irish = "ga",
   Italian = "it",
   Japanese = "ja",
   Korean = "ko",
+  Polish = "pl",
+  Portuguese = "pt",
   Russian = "ru",
-  Spanish = "es"
+  Spanish = "es",
+  Swedish = "sv",
+  Turkish = "tr",
+  Ukranian = "uk",
+  Vietnamese = "vi"
 }

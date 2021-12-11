@@ -1,4 +1,3 @@
-import * as mongoDB from "mongodb";
 import mongoose from 'mongoose';
 
 export async function connectDatabase () {

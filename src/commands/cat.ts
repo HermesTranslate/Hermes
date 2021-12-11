@@ -8,15 +8,13 @@ class CatCommand {
   async cat(
     interaction: CommandInteraction
   ) {
-        const d = await axios.get("https://api.thecatapi.com/v1/images/search")
-        .then(res => {
-            const data:any = res.data
-            const embed = new MessageEmbed()
-            .setColor("#8dde0b")
-            .setImage(data[0]["url"]);
-            interaction.reply({embeds: [embed]});
-        })
-        
+      const d = await axios.get("https://api.thecatapi.com/v1/images/search")
+      .then(res => {
+        const data:any = res.data
+        const embed = new MessageEmbed()
+        .setColor("#8dde0b")
+        .setImage(data[0]["url"]);
+        interaction.reply({embeds: [embed]});
+      })
     }
 }
-

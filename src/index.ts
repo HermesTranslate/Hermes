@@ -3,6 +3,7 @@ import { Intents, Interaction, Message } from "discord.js";
 import { Client } from "discordx";
 import { dirname, importx } from "@discordx/importer";
 import { connectDatabase } from "./db/connectDatabase.js";
+import { NotBanned } from "./utils/guards.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -19,6 +20,7 @@ const client = new Client({
   // If you only want to use guild commands, uncomment this line
   botGuilds: (process.env.ENVIRONMENT == "development") ? process.env.TEST_SERVERS!.split(",") : undefined,
   silent: true,
+  guards: [NotBanned]
 });
 
 client.once("ready", async () => {
@@ -46,7 +48,7 @@ client.on("messageCreate", (message: Message) => {
 
 async function run() {
   await importx(dirname(import.meta.url) + "/{events,commands,db,utils}/**/*.{ts,js}");
-  client.login(process.env.TOKEN!); // provide your bot token
+  await client.login(process.env.TOKEN!); // provide your bot token
 }
 
 run();

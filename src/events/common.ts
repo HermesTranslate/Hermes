@@ -5,18 +5,17 @@ import { TranslateClient } from "../utils/translate.js"
 
 @Discord()
 export abstract class AppDiscord {
-  @On("message")
+  @On("messageCreate")
   async onMessage([message]: ArgsOf<"message">, client: Client) {
     if (message.author.bot) return;
     if (!message.guild) return;
     let data = await Auto.findOne({
-        userId: message.author.id,
-        guildId: message.guild.id
+      userId: message.author.id,
+      guildId: message.guild.id
     })
     if (data) {
-        let result = await TranslateClient.translate("en", data.lang, message.content);
-        await message.channel.send(result)
+      let result = await TranslateClient.translate("en", data.lang, message.content);
+      await message.channel.send(result)
     }
-    
   }
 }

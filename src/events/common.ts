@@ -5,7 +5,7 @@ import { TranslateClient } from "../utils/translate.js"
 
 @Discord()
 export abstract class AppDiscord {
-  @On("message")
+  @On("messageCreate")
   async onMessage([message]: ArgsOf<"message">, client: Client) {
     if (message.author.bot) return;
     if (!message.guild) return;
